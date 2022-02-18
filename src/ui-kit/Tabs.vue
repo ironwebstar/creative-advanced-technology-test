@@ -1,10 +1,9 @@
 <template>
   <div class="tabs">
-    <div v-if="searchPlaceholder" class="flex"><input class="ml-auto" type="text" :placeholder="searchPlaceholder"></div>
-    <div class="flex border-b">
+    <div class="flex border-b border-grey-200">
       <div
-        class="tab flex items-center justify-center border-t-2 border-l-2 border-r-2 rounded-t p-5 cursor-pointer"
-        :class="active === tab ? 'border-4' : ''"
+        class="tab flex items-center justify-center border-primary text-grey-100 pr-8 pb-2 cursor-pointer"
+        :class="active === tab ? 'border-b-2 text-primary font-bold' : ''"
         v-for="(tab, index) in tabsNames"
         :key="index"
         @click="changeTab(tab)"
@@ -20,21 +19,24 @@ import { defineComponent, PropType } from 'vue'
 
 export default defineComponent({
   name: 'Tabs',
+
   props: {
     tabsNames: {
-      type: Array as PropType<Array<string>>,
+      type: Array as PropType<string[]>,
       required: true
-    },
-    searchPlaceholder: String
+    }
   },
-  data: function () {
+
+  emits: ['changed'],
+
+  data () {
     return {
       active: this.tabsNames && this.tabsNames.length > 0 ? this.tabsNames[0] as string : ''
     }
   },
-  emits: ['changed'],
+
   methods: {
-    changeTab: function (tab: string) {
+    changeTab (tab: string) {
       this.active = tab
       this.$emit('changed', tab)
     }
