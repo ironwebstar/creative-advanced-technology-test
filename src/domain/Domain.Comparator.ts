@@ -48,7 +48,7 @@ export const ORDER_OBJECT_COMPARATOR = <T>(
   objectB: T,
   keyToSort: keyof T,
   direction: SortDirection
-) => {
+): number => {
   const valueA = objectA[keyToSort]
   const valueB = objectB[keyToSort]
 
