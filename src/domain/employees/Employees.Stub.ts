@@ -37,7 +37,7 @@ export const employees: Employee[] = [
     referenceType: ReferrenceType.TOBACCO,
     title: 'User STORY',
     username: 'scrum-test',
-    type: ProjectType.STORY,
-    description: ''
+    type: ProjectType.TICKET,
+    description: 'bluh'
   }
 ]

@@ -6,6 +6,8 @@ import { getters, Getters } from './getters'
 import { state } from './state'
 import type { State } from './state'
 
+export const AUTH_USER = 'AUTH_USER'
+
 export const store = createStore({
   state,
   getters,

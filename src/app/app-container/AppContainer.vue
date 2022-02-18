@@ -8,7 +8,6 @@
           <main class='flex-1 pt-2'>
             <slot />
           </main>
-
           <AppFooterView />
         </div>
       </div>
@@ -26,11 +25,6 @@ export default defineComponent({
   components: {
     AppNavigationBar,
     AppFooterView
-  },
-
-  setup () {
-    return {
-    }
   }
 })
 </script>

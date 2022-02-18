@@ -6,6 +6,7 @@ import { Mutations, Mutation } from './mutations'
 import { UserRequest } from '../domain/users/Users.Model'
 import { userLogin } from '../domain/users/Users.Repository'
 import { getEmployees } from '../domain/employees/Employees.Repository'
+import { AUTH_USER } from '.'
 
 export enum Action {
   userLogin = 'userLogin',
@@ -20,14 +21,19 @@ type AugmentedActionContext = {
 } & Omit<ActionContext<State, State>, 'commit'>
 
 export interface Actions {
-  [Action.userLogin]({ state, getters, commit, dispatch }: AugmentedActionContext, user: UserRequest): void
+  [Action.userLogin]({ state, getters, commit, dispatch }: AugmentedActionContext, user: UserRequest): boolean
   [Action.getEmployees]({ state, getters, commit, dispatch }: AugmentedActionContext): void
 }
 
 export const actions: ActionTree<State, State> & Actions = {
   [Action.userLogin] (context: AugmentedActionContext, authUser: UserRequest) {
     const response = userLogin(authUser)
-    context.commit(Mutation.SET_AUTH_USER, response)
+    if (response) {
+      localStorage.setItem(AUTH_USER, response.userId)
+      context.commit(Mutation.SET_AUTH_USER, response)
+      context.dispatch(Action.getEmployees)
+    }
+    return !!response
   },
 
   [Action.getEmployees] (context: AugmentedActionContext) {
