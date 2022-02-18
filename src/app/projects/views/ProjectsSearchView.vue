@@ -7,7 +7,7 @@
 
       <div>
         <button type="submit" class="flex items-center bg-white text-grey-100 justify-center w-12 h-8 rounded-r-lg">
-          <img src='../../../assets/images/search.svg' />
+          <img v-lazy="SearchImg" />
         </button>
       </div>
     </div>
@@ -17,9 +17,13 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 
+import SearchImg from '../../../assets/images/search.svg'
+
 export default defineComponent({
   setup () {
-    return {}
+    return {
+      SearchImg
+    }
   }
 })
 </script>

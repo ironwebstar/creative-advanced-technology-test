@@ -46,15 +46,15 @@
             <div class="text-grey-100 pt-2">{{ employee.description }}</div>
             <div class="text-grey-100 flex flex-row items-start gap-4 mt-4">
               <div class="flex items-center gap-2">
-                <img src="../../../assets/images/heart.svg" />
+                <img v-lazy="HeartImg" />
                 <span>1</span>
               </div>
               <div class="flex items-center gap-1">
-                <img src="../../../assets/images/eye.svg" />
+                <img v-lazy="EyeImg" />
                 <span>1</span>
               </div>
               <div class="flex items-center gap-1">
-                <img src="../../../assets/images/users.svg" />
+                <img v-lazy="UsersImg" />
                 <span>1</span>
               </div>
             </div>
@@ -73,6 +73,10 @@ import { useStore } from '../../../store'
 import Card from '../../../ui-kit/Card.vue'
 import Avatar from '../../../ui-kit/Avatar.vue'
 
+import EyeImg from '../../../assets/images/eye.svg'
+import HeartImg from '../../../assets/images/heart.svg'
+import UsersImg from '../../../assets/images/users.svg'
+
 export default defineComponent({
   components: {
     Card,
@@ -85,6 +89,9 @@ export default defineComponent({
     const employees = computed<Employee[]>(() => store.state.employees)
 
     return {
+      EyeImg,
+      HeartImg,
+      UsersImg,
       StatusType,
       statusTypes: Object.values(StatusType),
       employees,

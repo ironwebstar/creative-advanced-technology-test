@@ -1,6 +1,6 @@
 <template>
   <div class="mx-auto flex justify-center flex-col items-center text-black w-1/3 mt-20">
-    <img src='../../assets/images/earthlinkLogo.svg' />
+    <img v-lazy="EarthLinkLogoImg" />
     <h3 class="text-3xl text-gray-900 text-center font-bold my-5">
       Sign in to Task Manager
     </h3>
@@ -72,7 +72,9 @@
 import { UserRequest } from '../../domain/users/Users.Model'
 import { defineComponent, reactive } from 'vue'
 import { Action, useStore } from '../../store'
-import router from '@/router'
+import router from '../../router'
+
+import EarthLinkLogoImg from '../../assets/images/earthlinkLogo.svg'
 
 export default defineComponent({
   setup () {
@@ -83,6 +85,7 @@ export default defineComponent({
     })
 
     return {
+      EarthLinkLogoImg,
       authUser,
       login: async () => {
         const response = await store.dispatch(Action.userLogin, authUser)
